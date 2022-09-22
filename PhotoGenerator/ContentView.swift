@@ -44,9 +44,11 @@ class ViewModel: ObservableObject
 
 struct ContentView: View {
     
+    
+    
     @StateObject var viewModel = ViewModel()
     var body: some View {
-        NavigationView{
+        
             VStack{
                 
                 
@@ -57,7 +59,7 @@ struct ContentView: View {
                     image
                     .resizable()
                     .foregroundColor(Color.pink)
-                    .frame(width: 400, height: 600)
+                    .frame(width: 40%, height: 60%)
                     .padding()
                 }
                 else
@@ -68,6 +70,8 @@ struct ContentView: View {
                     
                 }
                 Spacer()
+                
+                
                 
                 Button
                 {
@@ -100,7 +104,7 @@ struct ContentView: View {
            
         
         }
-}
+
 }
 
 
