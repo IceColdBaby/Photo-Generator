@@ -13,7 +13,7 @@ class ViewModel: ObservableObject
 {
     @Published var image: Image?
     func fetchNewImage(){
-    
+        
         guard let url = URL(string:"https://random.imagecdn.app/500/500")
         else
         {
@@ -30,7 +30,7 @@ class ViewModel: ObservableObject
             DispatchQueue.main.async
             {
                 guard let uiImage = UIImage(data:data)
-                        else
+                else
                 {
                     return
                 }
@@ -49,62 +49,65 @@ struct ContentView: View {
     @StateObject var viewModel = ViewModel()
     var body: some View {
         
-            VStack{
-                
-                
-                Spacer()
-                
-                if let image = viewModel.image
-                {
-                    image
+        VStack(alignment: .center, spacing: 1.0){
+            
+            Text("Photo Generator")
+                .font(.headline)
+                .fontWeight(.black)
+                .foregroundColor(Color.blue)
+                .multilineTextAlignment(.center)
+                .frame(width: 100.0, height: 100.0)
+                .accessibilityLabel(/*@START_MENU_TOKEN@*/"Label"/*@END_MENU_TOKEN@*/)
+                .accessibilityIdentifier(/*@START_MENU_TOKEN@*/"Identifier"/*@END_MENU_TOKEN@*/)
+                .shadow(radius: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
+            
+            
+            Spacer()
+            
+            if let image = viewModel.image
+            {
+                image
                     .resizable()
                     .foregroundColor(Color.pink)
-                    .frame(width: 40%, height: 60%)
                     .padding()
-                }
-                else
-                {
-                    Image(systemName: "Photo")
-                 
-                    .frame(width: 300, height: 500)
+                    .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color.pink/*@END_MENU_TOKEN@*/)
+                  
+            }
+            else
+            {
+                Image(systemName: "Photo")
                     
-                }
-                Spacer()
                 
-                
-                
-                Button
-                {
-                    viewModel.fetchNewImage()
-                } label:
-                {
-                    Text("New Image !")
-                        .bold()
-                        .frame(width: 250, height: 40)
-                        .foregroundColor(Color.white)
-                        .background(Color.blue)
-                        .cornerRadius(8)
-                }
-
-                
-                
+                    
                 
             }
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar
+            Spacer()
+            
+            
+            
+            Button
             {
-                ToolbarItem(placement: .principal)
-                {
-                    Text("Photo Generator")
-                        .font(.largeTitle.bold())
-                        .accessibilityAddTraits(.isHeader)
-                }
+                viewModel.fetchNewImage()
+            } label:
+            {
+                Text("New Image !")
+                    .bold()
+                    .frame(width: 250, height: 40)
+                    .foregroundColor(Color.white)
+                    .background(Color.blue)
+                    .cornerRadius(8)
             }
             
-           
-        
+            
+            
+            
         }
-
+        
+        
+        
+        
+    }
+    
 }
 
 
